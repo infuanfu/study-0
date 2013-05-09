@@ -1,7 +1,7 @@
 # STUDY 0: Study on possible palette to story correlations in anime trailers
 
 ## Assumptions
-- There is a correlation between color palette and story of anime
+- There is a correlation between color palette and genre of anime
 
 ## Gathering of Dataset
 ### Trailer
