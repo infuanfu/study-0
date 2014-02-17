@@ -1,0 +1,4 @@
+
+compare mean absolute error of two images, output name of images alongside calculated metric
+
+compare -metric MAE img/black.png img/gray50.png -format "%[d]/%[f] %[o]" null: 2>&1 | tr '\n' ' '
