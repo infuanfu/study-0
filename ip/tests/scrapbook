@@ -22,3 +22,6 @@ xargs -0 -I '{}' -n 1 sh -c 'compare -metric MAE $1 -format "%[d]/%[f] %[o]" nul
 
 ## unpack into individual lines per comparison
 xargs -0 -I '{}' -n 1 sh -c 'compare -metric MAE $1 -format "%[d]/%[f] %[o]" null: 2>&1 | tr "\n" "\t"' -- {} < <(tr \\n \\0 <f3) | sed "s/\t\t/\n/g"
+
+## histogram data
+http://www.imagemagick.org/Usage/files/#histogram
