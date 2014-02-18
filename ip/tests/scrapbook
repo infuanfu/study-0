@@ -1,4 +1,24 @@
-
-compare mean absolute error of two images, output name of images alongside calculated metric
+## compare mean absolute error of two images, output name of images alongside calculated metric
 
 compare -metric MAE img/black.png img/gray50.png -format "%[d]/%[f] %[o]" null: 2>&1 | tr '\n' ' '
+
+## parse video file into individual images
+
+ffmpeg -i inputfile.avi -f image2 image-%3d.jpeg
+
+## generate pairs of consecutive files to compare
+
+ls > dirlist
+len=$(wc -l dirlist)
+
+head -n $(echo $len-1|bc) dirlist > f1
+tail -n $(echo $len-1|bc) dirlist > f2
+paste f1 f2 >f3
+
+
+## run commands with param pairs
+
+xargs -0 -I '{}' -n 1 sh -c 'compare -metric MAE $1 -format "%[d]/%[f] %[o]" null: 2>&1 | tr "\n" "\t"' -- {} < <(tr \\n \\0 <f3)
+
+## unpack into individual lines per comparison
+xargs -0 -I '{}' -n 1 sh -c 'compare -metric MAE $1 -format "%[d]/%[f] %[o]" null: 2>&1 | tr "\n" "\t"' -- {} < <(tr \\n \\0 <f3) | sed "s/\t\t/\n/g"
