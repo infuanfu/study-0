@@ -37,11 +37,13 @@ The study will focus on the HSV color space.
 We'll follow the basic methods outlined in [Oranges and Blues](http://boxofficequant.com/oranges-and-blues/) and adapt them to anime.
 
 # Installation Instructions
-This study needs python3 and virtualenvwrapper.
+This study needs **python3** and **virtualenvwrapper**. Also current implementation requires a **PostgreSQL** DB (credentials are kept and must be changed in xmldump_to_db.py)
 
 1. Create a virtualenv: `mkvirtualenv --no-site-packages --python=$(which python3) studyzero`
 1. Activate this environment: `workon studyzero`
 1. Then `cd` to where the code lies and run `pip install -r requirements.txt`
     * You can also `setvirtualenvproject` here to set the current directory as project directory for the virtualenv. 'workon studyzero' will then automatically change into this directory.
 1. Download 'anime-titles.xml.gz' from anidb. (I am not linking to this file so they won't get hammered needlessly)
-1. Run `python converttodict.py`; it should print a long list of main titles and the number of processed main titles at the end.
+1. Change 'xmldump_to_db.py' to fit your credentials.
+1. Run `python xmldump_to_db.py` and wait, for this might take a few seconds
+1. You now have about 8000 anime with their associated titles in your PostgreSQL DB!
