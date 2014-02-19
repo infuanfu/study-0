@@ -29,3 +29,9 @@ http://www.imagemagick.org/Usage/files/#histogram
 ## get color count
 convert  ngeop/image-0002.png  -define histogram:unique-colors=true -format %c histogram:info:-|sort -n|tail -n 4|awk '{print $1 $6}'
 
+## create color patch image
+convert -size 200x50 xc:white 
+	-fill #color -draw 'rectangle x1,y1 x2,y2'
+	-fill #color -draw 'rectangle x1,y1 x2,y2'
+	-fill #color -draw 'rectangle x1,y1 x2,y2'
+	image.png
