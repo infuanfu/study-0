@@ -37,4 +37,4 @@ convert -size 200x50 xc:white
 	image.png
 
 
-sh -c "convert -size 1280x50 xc:black $(convert  frames/00100.png  -colors 32 -define histogram:unique-colors=true -format %c histogram:info:-|sort -rn|../histbin_to_magickdraw.pl) patch.png" && eog patch.png
+sh -c "convert -size 1280x50 xc:black $(convert  frames/00100.png  -colors 16 -define histogram:unique-colors=true -format %c histogram:info:-|sort -rn|../histbin_to_magickdraw.pl) patch.png" && eog patch.png

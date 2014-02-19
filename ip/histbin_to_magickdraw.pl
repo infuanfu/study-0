@@ -5,14 +5,14 @@
 #
 use strict;
 
-my $WIDTH = 200;
-my $HEIGHT = 200;
+my $WIDTH = 1280;
+my $HEIGHT = 50;
 my @data = ();
 my $sum = 0;
 while(<>)
 {
 	#27839: (255,255,255) #FFFFFF white
-	if(/(\d+):[^#]+(#.{6})/)
+	if(/(\d+):[^#]+(\#.{6})/)
 	{
 		push @data, [$1,$2];
 		$sum += $1;
