@@ -25,3 +25,7 @@ xargs -0 -I '{}' -n 1 sh -c 'compare -metric MAE $1 -format "%[d]/%[f] %[o]" nul
 
 ## histogram data
 http://www.imagemagick.org/Usage/files/#histogram
+
+## get color count
+convert  ngeop/image-0002.png  -define histogram:unique-colors=true -format %c histogram:info:-|sort -n|tail -n 4|awk '{print $1 $6}'
+
