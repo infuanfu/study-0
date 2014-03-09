@@ -2,6 +2,7 @@ from sqlalchemy import (
     Column,
     Integer,
     String,
+    Boolean,
     ForeignKey,
 )
 from sqlalchemy.ext.declarative import declarative_base
@@ -44,3 +45,29 @@ class Title(Base):
         return "<Title(value='%s', anime='%s', type='%s', lang='%s')>" % (
             self.value, self.anime.anidb_id, self.type, self.lang
         )
+
+
+class AnimeXCategory(Base):
+    __tablename__ = "anime_category"
+
+    anime_id = Column(Integer, ForeignKey('anime.id'), primary_key=True)
+    category_id = Column(Integer, ForeignKey('category.id'), primary_key=True)
+    weight = Column(Integer)
+
+    anime = relationship('Anime', backref="category_assocs")
+    category = relationship('Category', backref="anime_assocs")
+
+
+class Category(Base):
+    __tablename__ = "category"
+
+    id = Column(Integer, primary_key=True)
+    anidb_cat_id = Column(Integer, unique=True)
+    name = Column(String)
+    description = Column(String)
+    hentai = Column(Boolean)
+
+    # parent = Column(Integer, ForeignKey('category.anidb_cat_id'), nullable=True)
+
+    def __repr__(self):
+        return "<Category(id='%s', name='%s')>" % (self.anidb_cat_id, self.name)
